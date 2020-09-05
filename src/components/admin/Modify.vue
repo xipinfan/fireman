@@ -16,7 +16,7 @@
           <p id="tip">{{ str }}</p>
       </div>
       <van-row class="menss1" type="flex" justify="end">
-        <van-button @click="out" type="primary" size="large">确认修改</van-button>
+        <van-button @click="out" id="Bt" round type="primary" size="large">确认修改</van-button>
       </van-row>
   </div>
 </template>
@@ -74,5 +74,9 @@ export default {
         color: red;
         font-size: small;
         margin-left: 5%;
+    }
+    #Bt{
+        margin: 8%;
+        margin-top: 12%;
     }
 </style>

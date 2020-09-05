@@ -50,7 +50,7 @@
             </van-radio-group>
           </van-row>
           <van-row type="flex" justify="end" id='Bt'>
-            <van-button @click="out" type="primary" size="large">{{ on }}</van-button>
+            <van-button @click="out" round type="primary" size="large">{{ on }}</van-button>
           </van-row>
       </div>
   </div>
@@ -105,7 +105,7 @@ export default {
 
 <style scoped>
     #Bt{
-        margin-top: 8%;
+        margin: 8%;
     }
     .kk{
         margin-top: 3%;
