@@ -52,21 +52,42 @@ export default {
           checked: true,
           hold:true,
           bin: false,
-          user:[
-              'root','杰佬','范老师'
+          user:[{ 
+                name:'2020000',
+                username:'root',
+                password:'123456',
+                sex:'男',
+                position:'大队长',
+                age:'20',
+              },{
+                name:'2020001',
+                username:'范老师',
+                password:'123456',
+                sex:'男',
+                position:'教导员',
+                age:'20', 
+              },{
+                name:'2020002',
+                username:'杰佬',
+                password:'123456',
+                sex:'男',
+                position:'大队参谋',
+                age:'18', 
+              },
           ],
           pass:[
               '123456',
           ],
+          fuckyou:{},
           username: '',
           password: '',
       }
   },
   methods:{
       onSubmit(values) {
-            console.log('submit', values);
+            console.log(values);
             for(var i=0;i<this.user.length;i++){
-                if(this.user[i]==this.username&&this.password==this.pass[0]){
+                if(this.user[i].username==this.username&&this.user[i].password==this.password){
                     if(this.checked==true){
                         localStorage.setItem("username",this.username);
                         localStorage.setItem("password",this.password);
@@ -77,7 +98,7 @@ export default {
                         localStorage.setItem("username","");
                         localStorage.setItem("password","");
                     }
-                    this.$emit('again');this.$emit('begin',this.username,this.password);
+                    this.$emit('again');this.$emit('begin',this.user[i]);
                 }
             }
             this.bin=true;
@@ -94,8 +115,21 @@ export default {
    },
     mounted:function(){
        this.on=localStorage.getItem('hold');
+       var IDE=localStorage.getItem('IDEA');
+       if(IDE!=""){
+           var IDEA=JSON.parse(IDE);this.fuckyou=IDEA;
+           for(var i=0;i<this.user.length;i++){
+               if(this.user[i].name==this.fuckyou.name){
+                   this.user[i]=IDEA;
+               }
+           }
+       }
        if(this.on=="open"){
-          this.$emit('begin',this.username,this.password);
+          for(i=0;i<this.user.length;i++){
+              if(this.user[i].username==this.username&&this.user[i].password==this.password){
+                  this.$emit('begin',this.user[i]);break;
+              }
+          }
        }
        else{
            this.hold=false;

@@ -6,6 +6,18 @@
         left-arrow
         @click-left="onClickLeft"
       />
+      <div class="menss">
+          <van-cell-group>
+            <van-field class="menss1" v-model="value" label="旧密码" placeholder="若包含字母,请注意大小写" />
+          </van-cell-group>
+          <van-cell-group>
+            <van-field class="menss1" v-model="value1" label="新密码" placeholder="6-16位新密码" />
+          </van-cell-group>
+          <p id="tip">{{ str }}</p>
+      </div>
+      <van-row class="menss1" type="flex" justify="end">
+        <van-button @click="out" type="primary" size="large">确认修改</van-button>
+      </van-row>
   </div>
 </template>
 
@@ -13,16 +25,36 @@
 export default {
   name: 'Modify',
   props: [
-      
+      'ID',
   ],
   data(){
       return{
-          
+          value: '',
+          value1: '',
+          ok1:false,
+          str:'',
       }
   },
   methods:{
       onClickLeft(){
            this.$emit('onClick1');
+      },
+      out(){
+          if(this.ID.password!=this.value){
+              this.str="原密码错误";
+          }
+          else{
+              if(this.value1.length<6||this.value1>16){
+                  this.str="新密码长度不符合规范"
+              }
+              else{
+                  this.ID.password=this.value1;
+                  this.$emit('Change',this.ID);
+                  this.$dialog.alert({
+                        message: '密码修改成功',
+                  });
+              }
+          }
       }
   },
   computed:{
@@ -32,5 +64,15 @@ export default {
 </script>
 
 <style scoped>
-    
+    .menss{
+        margin-top: 10%;
+    }
+    .menss1{
+        margin-top: 7%;
+    }
+    #tip{
+        color: red;
+        font-size: small;
+        margin-left: 5%;
+    }
 </style>

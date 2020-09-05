@@ -21,9 +21,9 @@
         </van-tabbar>
     </div>
     <div v-else>
-        <Person v-if="node == 2" @onClick1="onClick1"></Person>
-        <Record v-if="node == 3" @onClick1="onClick1"></Record>
-        <Modify v-if="node == 4" @onClick1="onClick1"></Modify>
+        <Person v-if="node == 2" :ID="ID" @Change="Change" @onClick1="onClick1"></Person>
+        <Modify v-if="node == 3" :ID="ID" @Change="Change" @onClick1="onClick1"></Modify>
+        <Record v-if="node == 4" @onClick1="onClick1"></Record>
         <router-view></router-view>
     </div>
   </div>
@@ -52,20 +52,23 @@ export default {
           node:0,
           N1:0,
           ID:{
-              username:"",
-              passowrd:"",
+              
           },
       }
   },
   methods:{
-      begin(username,passowrd){
+      begin(user){
           if(this.N1==0){
               this.active="medal";
-              this.ID.username=username;
-              this.ID.passowrd=passowrd;
+              this.ID=user;
               this.node=1;
               this.$router.push('/medal');
           }  
+      },
+      Change(ID){
+          this.ID=ID;
+          var IDEA=this.ID;
+          localStorage.setItem('IDEA',JSON.stringify(IDEA));
       },
       onClick1() {
            this.node=1;
