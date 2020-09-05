@@ -4,9 +4,9 @@
           <h1 id="ID1">{{ ID.username }}</h1>
       </div>
       <div>
-          <van-cell title="个人信息" is-link to="index" />
-          <van-cell title="修改密码" is-link url="/vant/mobile.html" />
-          <van-cell title="评分记录" is-link to="index" />
+          <van-cell title="个人信息" is-link @click="personal" />
+          <van-cell title="修改密码" is-link @click="modify" />
+          <van-cell title="评分记录" is-link @click="record" />
           <van-cell is-link title="退出登录" @click="onClick"/>
       </div>
   </div>
@@ -20,13 +20,22 @@ export default {
   ],
   data(){
       return{
-          
+          node:0
       }
   },
   methods:{
       onClick(){
           this.$emit('Click');
-      }
+      },
+      personal(){
+          this.$emit('Personal');
+      },
+      modify(){
+          this.$emit('Modify');
+      },
+      record(){
+          this.$emit('Record');
+      },
   },
   computed:{
         

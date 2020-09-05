@@ -3,10 +3,10 @@ import App from './App.vue'
 import Vant from 'vant';
 import VueRouter from 'vue-router'
 import Sign from './components/Signin.vue'
-import Medal from './components/medal.vue'
-import Contact from './components/demo.vue'
-import Record from './components/records.vue'
-import Chart from './components/chart.vue'
+import Medal from './components/Medal.vue'
+import Contact from './components/Demo.vue'
+import Record from './components/Records.vue'
+import Chart from './components/Chart.vue'
 import 'vant/lib/index.css';
 
 Vue.config.productionTip = false
