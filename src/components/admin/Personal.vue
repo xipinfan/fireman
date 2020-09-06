@@ -43,18 +43,20 @@
             <van-field class="Whole" v-if="online == true" v-model="ID.age" label="年龄" readonly />
             <van-field class="Whole" v-if="online == false" v-model="ID.age" label="年龄" />
           </van-row>
-          <div class="fra frame"></div>
-          <div class="fra frame">
-            <van-row class='kk' type="flex" justify="end">
+          <div class="fra frame"></div><div class="fra frame"></div><div class="fra frame"></div>
+          <div class="frame">
+            <van-row type="flex" justify="end">
             <van-radio-group v-if="online == true" disabled v-model="radio"  direction="horizontal">
-              <van-radio name="男">男</van-radio>
-              <van-radio name="女">女</van-radio>
+              <van-radio class="big1" icon-size="1em" name="男">男</van-radio>
+              <van-radio class="big1" icon-size="1em" name="女">女</van-radio>
             </van-radio-group>
             <van-radio-group v-if="online == false" direction="horizontal" v-model="radio">
-              <van-radio name="男">男</van-radio>
-              <van-radio name="女">女</van-radio>
+              <van-radio class="big1" icon-size="1em" name="男">男</van-radio>
+              <van-radio class="big1" icon-size="1em" name="女">女</van-radio>
             </van-radio-group>
           </van-row>
+          <div class="fra frame"></div>
+          <div class="fra frame"></div><div class="fra frame"></div>
           <van-row type="flex" justify="end" id='Bt'>
             <van-button @click="out" round type="primary" size="large">{{ on }}</van-button>
           </van-row>
@@ -113,24 +115,27 @@ export default {
 
 <style scoped>
     #Bt{
-        margin: 8%;
+        margin-left: 0.9em;
+        margin-right: 0.9em;
     }
     .kk{
-        margin-top: 1.5%;
-        margin-bottom: 1.5%;
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
     }
     .Whole{
-        margin-left: 9.9%;
-        margin-right: 10%;
+        margin-left: 0.8em;
+        margin-right: 0.8em;
     }
     .frame {
         background-color: #f9f9f9!important;
     }
     .fra{
-       padding: 1.5%;
-       /* position:relative; */
+       padding: 0.16em;
     }
     .frame1{
-        padding: 24.3%;
+        padding: 5.56em;
+    }
+    .big1{
+        font-size: 0.8em;
     }
 </style>

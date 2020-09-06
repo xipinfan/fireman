@@ -30,12 +30,13 @@
                 <div class="frame1"></div>
                 <van-row type="flex" justify="end">
                 <van-row gutter="20">
-                  <van-checkbox icon-size="15\px" v-model="checked">记住密码</van-checkbox>
-                  <div class="frame1"></div>
-                  <van-checkbox icon-size="15\px" @click="holdon" v-model="hold">自动登录</van-checkbox>
+                  <van-checkbox icon-size="15\px" class="big1" v-model="checked">记住密码</van-checkbox>
+                  <div class="frame2"></div>
+                  <van-checkbox icon-size="15\px" class="big1" @click="holdon" v-model="hold">自动登录</van-checkbox>
                 </van-row>
                 </van-row>
-                <div style="margin: 16px;">
+                <div class="frame1"></div>
+                <div style="margin: 0.01em;">
                   <van-button round block type="info" native-type="submit" ref="buttons">
                     登录
                   </van-button>
@@ -147,22 +148,28 @@ export default {
 </script>
 
 <style>
+    .big1{
+        font-size: 0.7em;
+    }
     #tip{
         color: red;
         font-size: small;
     }
     #sign1{
-        margin-top: 40%;
-        margin-left: 10%;
-        margin-right: 10%;
+        margin-top: 3.5em;
+        margin-left: 1.2em;
+        margin-right: 1.2em;
     }
     .frame {
         background-color: #f9f9f9!important;
     }
     .gold{
-        border-radius:25px;
+        border-radius:2em;
     }
     .frame1{
-        padding: 2%;
+        padding: 0.3em;
+    }
+    .frame2{
+        padding: 0.1em;
     }
 </style>

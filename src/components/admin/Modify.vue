@@ -11,6 +11,7 @@
           <van-cell-group>
             <van-field class="menss1" v-model="value" label="旧密码" placeholder="若包含字母,请注意大小写" />
           </van-cell-group>
+          
           <van-cell-group>
             <van-field class="menss1" v-model="value1" label="新密码" placeholder="6-16位新密码" />
           </van-cell-group>
@@ -67,24 +68,24 @@ export default {
 
 <style scoped>
     .menss{
-        margin-top: 10%;
+        margin-top: 1.8em;
     }
     .menss1{
-        margin-top: 7%;
+        margin-top: 1.8em;
     }
     #tip{
         color: red;
         font-size: small;
-        margin-left: 5%;
+        margin-left: 0.5em;
     }
     #Bt{
-        margin: 8%;
-        margin-top: 12%;
+        margin: 0.8em;
+        margin-top: 1.2em;
     }
     .frame {
         background-color: #f9f9f9!important;
     }
     #ide{
-        padding: 40.7%;
+        padding: 7.05em;
     }
 </style>

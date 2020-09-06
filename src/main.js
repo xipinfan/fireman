@@ -7,7 +7,8 @@ import Medal from './components/Medal.vue'
 import Contact from './components/Demo.vue'
 import Record from './components/Records.vue'
 import Chart from './components/Chart.vue'
-import 'vant/lib/index.css';
+import 'vant/lib/index.css'
+import 'amfe-flexible'
 
 Vue.config.productionTip = false
 Vue.use(Vant);

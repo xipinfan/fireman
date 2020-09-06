@@ -78,7 +78,13 @@ export default {
           this.N1=0;
       },
       onChange(index) {
-          this.$router.push('/'+index);
+          var that=this;
+          this.$router.push({
+              path:'/'+index,
+              query:{
+                  ID:that.ID,
+              }
+          });
       },
       onClickRight() {
           this.node=0;this.N1=1;

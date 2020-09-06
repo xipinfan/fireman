@@ -56,15 +56,15 @@ export default {
     }
     #ID1{
         position:relative;
-        margin-top: 10%; 
-        margin-left: 4%;
-        margin-bottom: 10%;
+        margin-top: 0.8em; 
+        margin-left: 0.32em;
+        margin-bottom: 0.8em;
     }
     .frame {
        background-color: #e6e6e6;
     }    
     .fra{
-       padding: 1.5%;
+       padding: 0.15em;
        position:relative;
     }
     .hello{
@@ -72,6 +72,6 @@ export default {
         width: 100%;
     }
     .frame1{
-        padding: 38.5%;
+       padding-bottom: 10em;
     }
 </style>
