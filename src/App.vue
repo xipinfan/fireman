@@ -3,6 +3,7 @@
     <Sign @again="again" @begin="begin" v-if="node == 0"></Sign>
     <div v-else-if="node == 1">
         <van-nav-bar
+         class="frame"
          title="日常评分"
          /> 
         <router-view></router-view>
@@ -96,5 +97,7 @@ export default {
 </script>
 
 <style>
-   
+   .frame {
+       background-color: #f9f9f9!important;
+   }
 </style>

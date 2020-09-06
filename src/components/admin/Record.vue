@@ -1,6 +1,7 @@
 <template>
   <div class="record">
       <van-nav-bar
+        class="frame"
         title="评分记录"
         left-text="返回"
         left-arrow
@@ -32,5 +33,7 @@ export default {
 </script>
 
 <style scoped>
-    
+    .frame {
+        background-color: #f9f9f9!important;
+    }
 </style>

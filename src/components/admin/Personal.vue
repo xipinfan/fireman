@@ -1,19 +1,22 @@
 <template>
   <div class="personal">
       <van-nav-bar
+        class="frame"
         title="个人信息"
         left-text="返回"
         left-arrow
         @click-left="onClickLeft"
       />
-      <div class='kk'>
+      <div>
           <van-row class='kk' type="flex" justify="center">
             <van-field class="Whole" v-model="ID.name" label="账号" readonly />
           </van-row>
+          <div class="fra frame"> </div>
           <van-row class='kk' type="flex" justify="center">
             <van-field class="Whole" v-if="online == true" v-model="ID.username" label="姓名" readonly />
             <van-field class="Whole" v-if="online == false" v-model="ID.username" label="姓名" />
           </van-row>
+          <div class="fra frame"> </div>
           <van-row class='kk' type="flex" justify="center">
             <van-field class="Whole" v-if="online == true" v-model="ID.position" label="职务" readonly />
             <div v-if="online == false">
@@ -35,11 +38,14 @@
                 </van-popup>
             </div>
           </van-row>
+          <div class="fra frame"> </div>
           <van-row class='kk' type="flex" justify="center">
             <van-field class="Whole" v-if="online == true" v-model="ID.age" label="年龄" readonly />
             <van-field class="Whole" v-if="online == false" v-model="ID.age" label="年龄" />
           </van-row>
-          <van-row class='kk' type="flex" justify="end">
+          <div class="fra frame"></div>
+          <div class="fra frame">
+            <van-row class='kk' type="flex" justify="end">
             <van-radio-group v-if="online == true" disabled v-model="radio"  direction="horizontal">
               <van-radio name="男">男</van-radio>
               <van-radio name="女">女</van-radio>
@@ -52,6 +58,8 @@
           <van-row type="flex" justify="end" id='Bt'>
             <van-button @click="out" round type="primary" size="large">{{ on }}</van-button>
           </van-row>
+          </div>
+          <div class="frame frame1"></div>
       </div>
   </div>
 </template>
@@ -108,10 +116,21 @@ export default {
         margin: 8%;
     }
     .kk{
-        margin-top: 3%;
+        margin-top: 1.5%;
+        margin-bottom: 1.5%;
     }
     .Whole{
-        margin-left: 14%;
+        margin-left: 9.9%;
         margin-right: 10%;
+    }
+    .frame {
+        background-color: #f9f9f9!important;
+    }
+    .fra{
+       padding: 1.5%;
+       /* position:relative; */
+    }
+    .frame1{
+        padding: 24.3%;
     }
 </style>

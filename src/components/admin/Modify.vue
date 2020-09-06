@@ -1,6 +1,7 @@
 <template>
-  <div class="modify">
+  <div class="modify frame">
       <van-nav-bar
+        class="frame"
         title="修改密码"
         left-text="返回"
         left-arrow
@@ -18,6 +19,7 @@
       <van-row class="menss1" type="flex" justify="end">
         <van-button @click="out" id="Bt" round type="primary" size="large">确认修改</van-button>
       </van-row>
+      <div id="ide"></div>
   </div>
 </template>
 
@@ -78,5 +80,11 @@ export default {
     #Bt{
         margin: 8%;
         margin-top: 12%;
+    }
+    .frame {
+        background-color: #f9f9f9!important;
+    }
+    #ide{
+        padding: 40.7%;
     }
 </style>

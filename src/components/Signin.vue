@@ -2,16 +2,20 @@
     <div>
         <div id="sign1">
             <h1 align="center">评分系统</h1>
-            <van-form show-error-message=false  @submit="onSubmit" error-message-align="center" validate-trigger="onChange">
+            <div class="frame1"></div><div class="frame1"></div>
+            <van-form show-error-message  @submit="onSubmit" error-message-align="center" validate-trigger="onChange">
                 <van-row>
                 <van-field
+                  class="frame gold"
                   v-model="username"
                   name="用户名"
                   label="用户名"
                   placeholder="请填写用户名"
                   :rules="[{ required: false }]"
                 />
+                <div class="frame1"></div><div class="frame1"></div>
                 <van-field
+                  class="frame gold"
                   v-model="password"
                   type="password"
                   name="密码"
@@ -23,10 +27,12 @@
                 <van-row type="flex" justify="center">
                     <p id="tip" v-if="bin">用户名或密码错误</p>
                 </van-row>
+                <div class="frame1"></div>
                 <van-row type="flex" justify="end">
                 <van-row gutter="20">
-                  <van-checkbox icon-size="15\px" shape="square" v-model="checked">记住密码</van-checkbox>
-                  <van-checkbox icon-size="15\px" @click="holdon" shape="square" v-model="hold">自动登录</van-checkbox>
+                  <van-checkbox icon-size="15\px" v-model="checked">记住密码</van-checkbox>
+                  <div class="frame1"></div>
+                  <van-checkbox icon-size="15\px" @click="holdon" v-model="hold">自动登录</van-checkbox>
                 </van-row>
                 </van-row>
                 <div style="margin: 16px;">
@@ -112,9 +118,6 @@ export default {
        //自动加载indexs方法
        this.username=localStorage.getItem('username');  
        this.password=localStorage.getItem('password');
-   },
-    mounted:function(){
-       this.on=localStorage.getItem('hold');
        var IDE=localStorage.getItem('IDEA');
        if(IDE!=""){
            var IDEA=JSON.parse(IDE);this.fuckyou=IDEA;
@@ -123,9 +126,13 @@ export default {
                    this.user[i]=IDEA;
                }
            }
+           
        }
+   },
+    mounted:function(){
+       this.on=localStorage.getItem('hold');
        if(this.on=="open"){
-          for(i=0;i<this.user.length;i++){
+          for(var i=0;i<this.user.length;i++){
               if(this.user[i].username==this.username&&this.user[i].password==this.password){
                   this.$emit('begin',this.user[i]);break;
               }
@@ -133,7 +140,7 @@ export default {
        }
        else{
            this.hold=false;
-       }
+       } 
     }
 }
 
@@ -145,8 +152,17 @@ export default {
         font-size: small;
     }
     #sign1{
-        margin-top: 50%;
+        margin-top: 40%;
         margin-left: 10%;
         margin-right: 10%;
+    }
+    .frame {
+        background-color: #f9f9f9!important;
+    }
+    .gold{
+        border-radius:25px;
+    }
+    .frame1{
+        padding: 2%;
     }
 </style>
