@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="sign1">
-            <h1 align="center">评分系统</h1>
+            <h2 align="center">评分系统</h2>
             <div class="frame1"></div><div class="frame1"></div>
             <van-form show-error-message  @submit="onSubmit" error-message-align="center" validate-trigger="onChange">
                 <van-row>
@@ -66,6 +66,26 @@ export default {
                 sex:'男',
                 position:'大队长',
                 age:'20',
+                evaluated:[{
+                        username:"法外狂徒张三",
+                        position:"消防员",
+                    },{
+                        username:"桀骜不驯李四",
+                        position:"文员",
+                    },{
+                        username:"丧心病狂王五",
+                        position:"班长",
+                    },{
+                        username:"亲妈升天老六",
+                        position:"副班长",
+                    },{
+                        username:"回家养猪七酱",
+                        position:"副中队长",
+                    } ,{
+                        username:"厕所战神老八",
+                        position:"中队长",
+                    },
+                ],
               },{
                 name:'2020001',
                 username:'范老师',
@@ -73,13 +93,53 @@ export default {
                 sex:'男',
                 position:'教导员',
                 age:'20', 
+                evaluated:[{
+                        username:"法外狂徒张三",
+                        position:"消防员",
+                    },{
+                        username:"桀骜不驯李四",
+                        position:"文员",
+                    },{
+                        username:"丧心病狂王五",
+                        position:"班长",
+                    },{
+                        username:"亲妈升天老六",
+                        position:"副班长",
+                    },{
+                        username:"回家养猪七酱",
+                        position:"副中队长",
+                    } ,{
+                        username:"厕所战神老八",
+                        position:"中队长",
+                    },
+                ],
               },{
                 name:'2020002',
                 username:'杰佬',
                 password:'123456',
                 sex:'男',
                 position:'大队参谋',
-                age:'18', 
+                age:'18',
+                 evaluated:[{
+                         username:"法外狂徒张三",
+                         position:"消防员",
+                     },{
+                         username:"桀骜不驯李四",
+                         position:"文员",
+                     },{
+                         username:"丧心病狂王五",
+                         position:"班长",
+                     },{
+                         username:"亲妈升天老六",
+                         position:"副班长",
+                     },{
+                         username:"回家养猪七酱",
+                         position:"副中队长",
+                     },{
+                         username:"厕所战神老八",
+                         position:"中队长",
+                     },
+                 ],
               },
           ],
           pass:[
@@ -94,7 +154,7 @@ export default {
       onSubmit(values) {
             console.log(values);
             for(var i=0;i<this.user.length;i++){
-                if(this.user[i].username==this.username&&this.user[i].password==this.password){
+                if(this.user[i].username==this.username&&this.user[i].password==this.password){ 
                     if(this.checked==true){
                         localStorage.setItem("username",this.username);
                         localStorage.setItem("password",this.password);
