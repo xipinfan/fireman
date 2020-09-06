@@ -149,7 +149,7 @@ export default {
 
 <style>
     .big1{
-        font-size: 0.7em;
+        font-size: 0.5em;
     }
     #tip{
         color: red;

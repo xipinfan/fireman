@@ -47,12 +47,12 @@
           <div class="frame">
             <van-row type="flex" justify="end">
             <van-radio-group v-if="online == true" disabled v-model="radio"  direction="horizontal">
-              <van-radio class="big1" icon-size="1em" name="男">男</van-radio>
-              <van-radio class="big1" icon-size="1em" name="女">女</van-radio>
+              <van-radio class="big1" name="男">男</van-radio>
+              <van-radio class="big1" name="女">女</van-radio>
             </van-radio-group>
             <van-radio-group v-if="online == false" direction="horizontal" v-model="radio">
-              <van-radio class="big1" icon-size="1em" name="男">男</van-radio>
-              <van-radio class="big1" icon-size="1em" name="女">女</van-radio>
+              <van-radio class="big1" name="男">男</van-radio>
+              <van-radio class="big1" name="女">女</van-radio>
             </van-radio-group>
           </van-row>
           <div class="fra frame"></div>
@@ -119,12 +119,12 @@ export default {
         margin-right: 0.9em;
     }
     .kk{
-        margin-top: 0.2em;
+        margin-top: 0.5em;
         margin-bottom: 0.2em;
     }
     .Whole{
-        margin-left: 0.8em;
-        margin-right: 0.8em;
+        margin-left: 1.85em;
+        margin-right: 2em;
     }
     .frame {
         background-color: #f9f9f9!important;
@@ -133,9 +133,9 @@ export default {
        padding: 0.16em;
     }
     .frame1{
-        padding: 5.56em;
+        padding-top: 9.6em;
     }
     .big1{
-        font-size: 0.8em;
+        font-size: 0.5em;
     }
 </style>

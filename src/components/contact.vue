@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
       <div class="id">
-          <h1 id="ID1">{{ ID.username }}</h1>
+          <h2 id="ID1">{{ ID.username }}</h2>
       </div>
       <div class="fra frame"> </div>
       <div>
@@ -72,6 +72,6 @@ export default {
         width: 100%;
     }
     .frame1{
-       padding-bottom: 10em;
+       padding-bottom: 11.2em;
     }
 </style>

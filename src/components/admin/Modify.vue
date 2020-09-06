@@ -86,6 +86,7 @@ export default {
         background-color: #f9f9f9!important;
     }
     #ide{
-        padding: 7.05em;
+        padding-button: 13em;
+        padding-top: 13.5em;
     }
 </style>

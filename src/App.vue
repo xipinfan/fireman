@@ -103,6 +103,9 @@ export default {
 </script>
 
 <style>
+   .top{
+       padding: 0.7em;
+   }
    .frame {
        background-color: #f9f9f9!important;
    }
