@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello frame">
       <div class="id">
           <h2 id="ID1">{{ ID.username }}</h2>
       </div>
@@ -7,11 +7,10 @@
       <div>
           <van-cell title="个人信息" is-link @click="personal" />
           <van-cell title="修改密码" is-link @click="modify" />
-          <div class="fra frame"> </div>
+          <div class="fra"> </div>
           <van-cell title="评分记录" is-link @click="record" />
-          <div class="fra frame"> </div>
+          <div class="fra"> </div>
           <van-cell is-link title="退出登录" @click="onClick"/>
-          <div class="frame1 frame"></div>
       </div>
   </div>
 </template>
@@ -51,27 +50,25 @@ export default {
 <style scoped>
     .id{
         width: 100%;
-        height: 25%;
-        position:relative;
+        height: 18%;
+        background-color: #fff;
     }
     #ID1{
-        position:relative;
-        margin-top: 0.8em; 
-        margin-left: 0.32em;
-        margin-bottom: 0.8em;
+        position:fixed;
+        margin-top: 0.8rem; 
+        margin-left: 0.32rem;
+        margin-bottom: 0.8rem;
     }
     .frame {
-       background-color: #e6e6e6;
+       background-color: #f9f9f9;
     }    
     .fra{
-       padding: 0.15em;
+       padding: 0.15rem;
        position:relative;
     }
     .hello{
+        position: fixed;
         height: 100%;
         width: 100%;
-    }
-    .frame1{
-       padding-bottom: 11.2em;
-    }
+    }   
 </style>

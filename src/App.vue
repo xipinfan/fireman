@@ -104,7 +104,7 @@ export default {
 
 <style>
    .top{
-       padding: 0.7em;
+       padding: 0.7rem;
    }
    .frame {
        background-color: #f9f9f9!important;

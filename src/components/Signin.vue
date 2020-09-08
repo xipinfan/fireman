@@ -36,7 +36,7 @@
                 </van-row>
                 </van-row>
                 <div class="frame1"></div>
-                <div style="margin: 0.01em;">
+                <div style="margin: 0.01rem;">
                   <van-button round block type="info" native-type="submit" ref="buttons">
                     登录
                   </van-button>

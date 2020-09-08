@@ -1,5 +1,5 @@
 <template>
-  <div class="personal">
+  <div class="personal frame">
       <van-nav-bar
         class="frame"
         title="个人信息"
@@ -115,27 +115,32 @@ export default {
 
 <style scoped>
     #Bt{
-        margin-left: 0.9em;
-        margin-right: 0.9em;
+        margin-left: 0.9rem;
+        margin-right: 0.9rem;
     }
     .kk{
-        margin-top: 0.5em;
-        margin-bottom: 0.2em;
+        margin-top: 0.3rem;
+        margin-bottom: 0.2rem;
     }
     .Whole{
-        margin-left: 1.85em;
-        margin-right: 2em;
+        margin-left: 0.7rem;
+        margin-right: 0.7rem;
     }
     .frame {
-        background-color: #f9f9f9!important;
+        background-color: #f9f9f9;
     }
     .fra{
-       padding: 0.16em;
+       padding: 0.16rem;
     }
     .frame1{
-        padding-top: 9.6em;
+        padding-top: 5.4rem;
     }
     .big1{
-        font-size: 0.5em;
+        font-size: 0.5rem;
+    }
+    .personal{
+        position: fixed;
+        height: 100%;
+        width: 100%;
     }
 </style>
