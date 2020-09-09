@@ -1,7 +1,7 @@
 <template>
   <div class="hello frame">
       <div class="id">
-          <h2 id="ID1">{{ ID.username }}</h2>
+          <h3 id="ID1">{{ ID.username }}</h3>
       </div>
       <div class="fra frame"> </div>
       <div>

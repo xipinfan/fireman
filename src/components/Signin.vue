@@ -152,7 +152,7 @@ export default {
   },
   methods:{
       onSubmit(values) {
-            console.log(values);
+            console.log(values.用户名);
             for(var i=0;i<this.user.length;i++){
                 if(this.user[i].username==this.username&&this.user[i].password==this.password){ 
                     if(this.checked==true){
