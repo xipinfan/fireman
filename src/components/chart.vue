@@ -6,17 +6,20 @@
         <van-dropdown-item v-model="value2" :options="option2" />
         <van-dropdown-item v-model="value3" :options="option3" />
       </van-dropdown-menu>
-      <van-cell is-link title="选择日期" @click="show1 = true" />
+      <van-cell @click="show1 = true">
+        <template #title>
+          <span class="custom-title">{{ currentDate1 }}</span>
+        </template>
+      </van-cell>
       <van-action-sheet v-model="show1" cancel-text="确认" close-on-click-action @cancel="onCancel1" title="选择日期">
           <van-datetime-picker
             show-toolbar
             confirm-button-text=" "
             cancel-button-text=" "
-            @confirm="confirm1(value)"
+            @change="chang2"
             v-model="currentDate"
             type="date"
-            :min-date="minDate"
-            :max-date="maxDate"
+            :formatter="formatter"
           />
       </van-action-sheet>
       <ve-line v-if="value==0" :data="chartData"></ve-line>
@@ -32,8 +35,6 @@ export default {
           date: '',
           show: false,
           show1: false,
-          minDate: new Date(2000, 0, 1),
-          maxDate: new Date(2099, 12, 31),
           value: 0,
           value1: 0,
           value2: 0,
@@ -41,6 +42,7 @@ export default {
           switch1: false,
           switch2: false,
           currentDate: new Date(),
+          currentDate1: new Date(),
           option: [
             { text: '折线图', value: 0 },
             { text: '柱状图', value: 1 },
@@ -60,10 +62,10 @@ export default {
               
           ],
           option3:[
-              { text:"日评",value:0 },
-              { text:"周评",value:1 },
-              { text:"半月评",value:2 },
-              { text:"月评",value:3 },
+              { text:"日情况图",value:0 },
+              { text:"周情况图",value:1 },
+              { text:"月情况图",value:2 },
+              { text:"季情况图",value:3 },
           ],
           man1:[
               [ { text:"小明",value:0 },{ text:"小红",value:2 },{ text:"小刚",value:3 } ],
@@ -87,39 +89,40 @@ export default {
         }
       },
   methods: {
+    formatter(type, val) {
+      if (type === 'year') {
+        return `${val}年`;
+      } else if (type === 'month') {
+        return `${val}月`;
+      }
+      if (type === 'day') {
+        return `${val}日`;
+      } 
+      return val;
+    },
     onCancel1(){
         this.show1=false;
-    },
-    confirm1(value){
-        console.log(this.currentDate);
-        console.log(value);
-    },
-    onSelect(item) {
-        // 默认情况下点击选项时不会自动收起
-        // 可以通过 close-on-click-action 属性开启自动收起
-      this.show = false;
-      console.log(item);
-    },
-    formatDate(date) {
-      return `${date.getMonth() + 1}/${date.getDate()}`;
-    },
-    onConfirm(date) {
-      this.show = false;
-      this.date = this.formatDate(date);
-      console.log(this.date);
     },
     chang1(){
       this.option2=this.man1[this.value1];  
     },
+    chang2(){
+        this.currentDate1=new Date(this.currentDate).toLocaleDateString();
+    }
   },
   mounted:function (){
       this.option2=this.man1[this.value1];   
+      this.currentDate1=new Date().toLocaleDateString();
   },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    .custom-title{
+        margin-left: 37%;
+        font-size: 0.5rem;
+    }
     .el-header{
         background-color: #1F5DEA;
         color: white;

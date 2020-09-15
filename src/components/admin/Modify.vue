@@ -8,12 +8,12 @@
         @click-left="onClickLeft"
       />
       <div class="menss">
-          <van-cell-group>
-            <van-field class="menss1" v-model="value" label="旧密码" placeholder="若包含字母,请注意大小写" />
-          </van-cell-group>
-          <van-cell-group>
-            <van-field class="menss1" v-model="value1" label="新密码" placeholder="6-16位新密码" />
-          </van-cell-group>
+          <van-row type="flex" justify="center">
+            <van-field class="menss1 Whole"  v-model="value" label="旧密码" placeholder="若包含字母,请注意大小写" />
+          </van-row>
+          <van-row type="flex" justify="center">
+            <van-field class="menss1 Whole" v-model="value1" label="新密码" placeholder="6-16位新密码" />
+          </van-row>
           <p id="tip">{{ str }}</p>
       </div>
       <van-row class="menss1" type="flex" justify="end">
@@ -46,7 +46,7 @@ export default {
               this.str="原密码错误";
           }
           else{
-              if(this.value1.length<6||this.value1>16){
+              if(this.value1.length<6||this.value1.length>16){
                   this.str="新密码长度不符合规范"
               }
               else{
@@ -55,17 +55,23 @@ export default {
                   this.$dialog.alert({
                         message: '密码修改成功',
                   });
+                  this.value='';
+                  this.value1='';
               }
           }
       }
-  },
-  computed:{
-        
   },
 }
 </script>
 
 <style scoped>
+    .Whole{
+        border:0.01rem solid;
+        border-radius:0.8rem;
+        border-color: #E6E6E6;
+        margin-left: 0.7rem;
+        margin-right: 0.7rem;
+    }
     .menss{
         margin-top: 1.8rem;
     }

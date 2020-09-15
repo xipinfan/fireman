@@ -1,15 +1,16 @@
 <template>
   <div class="personal frame">
       <van-nav-bar
-        class="frame"
+        style="background-color: #fcfcfc;"
         title="个人信息"
         left-text="返回"
         left-arrow
         @click-left="onClickLeft"
       />
       <div>
+          <div class="fra frame"> </div><div style="margin-top: 0.5rem;"> </div>
           <van-row class='kk' type="flex" justify="center">
-            <van-field class="Whole" v-model="ID.name" label="账号" readonly />
+            <van-field class="Whole" v-model="ID.id" label="账号" readonly />
           </van-row>
           <div class="fra frame"> </div>
           <van-row class='kk' type="flex" justify="center">
@@ -18,25 +19,7 @@
           </van-row>
           <div class="fra frame"> </div>
           <van-row class='kk' type="flex" justify="center">
-            <van-field class="Whole" v-if="online == true" v-model="ID.position" label="职务" readonly />
-            <div v-if="online == false">
-                <van-field
-                  readonly
-                  clickable
-                  label="职务"
-                  :value="value"
-                  placeholder="选择职务"
-                  @click="showPicker = true"
-                />
-                <van-popup v-model="showPicker" round position="bottom">
-                  <van-picker
-                    show-toolbar
-                    :columns="columns"
-                    @cancel="showPicker = false"
-                    @confirm="onConfirm"
-                  />
-                </van-popup>
-            </div>
+            <van-field class="Whole" v-model="ID.career" label="职务" readonly />
           </van-row>
           <div class="fra frame"> </div>
           <van-row class='kk' type="flex" justify="center">
@@ -58,7 +41,7 @@
           <div class="fra frame"></div>
           <div class="fra frame"></div><div class="fra frame"></div>
           <van-row type="flex" justify="end" id='Bt'>
-            <van-button @click="out" round type="primary" size="large">{{ on }}</van-button>
+            <van-button style="background-color: #1989fa;border-color: #1989fa;" @click="out" round type="primary" size="large">{{ on }}</van-button>
           </van-row>
           </div>
           <div class="frame frame1"></div>
@@ -76,8 +59,6 @@ export default {
       return{
           radio:'男',
           on:'修改信息',
-          columns: ['大队长', '教导员','副大队长', '大队参谋','中队长', 
-          '指导员', '副中队长', '班长', '副班长','消防员','文员'],
           online:true,
           value: '',
           showPicker: false,
@@ -88,13 +69,13 @@ export default {
           this.$emit('onClick1');
       },
       out(){
-          if(this.online==false){
-              this.online=!this.online;
-              this.$emit('Change',this.ID);
+          if(this.online==true){
               this.on='确认修改';
+              this.online=false;
+              this.$emit('Change',this.ID);
           }
           else{
-              this.online=!this.online;
+              this.online=true;
               this.on='修改信息';
           }
       },
@@ -108,26 +89,28 @@ export default {
         
   },
   mounted:function(){
-      this.value=this.ID.position;
+      this.value=this.ID.career;
   }
 }
 </script>
 
 <style scoped>
     #Bt{
-        margin-left: 0.9rem;
-        margin-right: 0.9rem;
+        margin-left: 0.8rem;
+        margin-right: 0.8rem;
     }
     .kk{
         margin-top: 0.3rem;
         margin-bottom: 0.2rem;
     }
-    .Whole{
+    .Whole{ 
+        border-radius:26.64rem;
         margin-left: 0.7rem;
         margin-right: 0.7rem;
+        background-color: #F9F9F9;
     }
     .frame {
-        background-color: #f9f9f9;
+        background-color: #ffffff!important;
     }
     .fra{
        padding: 0.16rem;

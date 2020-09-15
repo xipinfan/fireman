@@ -3,7 +3,7 @@
     <Sign @again="again" @begin="begin" v-if="node == 0"></Sign>
     <div v-else-if="node == 1">
         <van-nav-bar
-         class="frame"
+         style="background-color: #fbfbfb;"
          title="日常评分"
          /> 
         <router-view></router-view>
@@ -15,8 +15,8 @@
             :ID="ID"
             v-if="active=='contact'"></Contact>
         <van-tabbar v-model="active" @change="onChange">
-          <van-tabbar-item name="medal" icon="medal-o">排名</van-tabbar-item>
-          <van-tabbar-item name="chart" icon="chart-trending-o">图表</van-tabbar-item>
+          <van-tabbar-item v-if="ID.is_admin==1" name="medal" icon="medal-o">排名</van-tabbar-item>
+          <van-tabbar-item v-if="ID.is_admin==1" name="chart" icon="chart-trending-o">图表</van-tabbar-item>
           <van-tabbar-item name="records" icon="records">评分</van-tabbar-item>
           <van-tabbar-item name="contact" icon="contact">个人中心</van-tabbar-item>
         </van-tabbar>
@@ -49,21 +49,41 @@ export default {
   },
   data(){
       return{
-          active: 'medal',
+          nb:'',
+          zsbd:'',
+          active: 'contact',
+          active1:'contact',
           node:0,
           N1:0,
-          ID:{
-              
+          ID:{  
           },
       }
+  },
+  mounted: function () {
+    localStorage.setItem('zsbd',"");
+    localStorage.setItem('cmts',"");
+    window.setInterval(() => {
+        this.nb=localStorage.getItem('cmts');
+        this.zsbd=localStorage.getItem('zsbd');
+        if(this.nb=="1"){
+            localStorage.setItem('cmts',"0");
+            if(this.node==2||this.node==3||this.node==4){
+                this.node=1;
+            }
+            else if(this.zsbd!="1"){
+                //plus.runtime.quit(); 
+            }
+        }
+    }, 10)
   },
   methods:{
       begin(user){
           if(this.N1==0){
-              this.active="medal";
-              this.ID=user;
+              this.active="contact";
+              this.ID=user.data.extend;
+              this.N1=1;
               this.node=1;
-              this.$router.push('/medal');
+              this.$router.push('/contact');
           }  
       },
       Change(ID){
@@ -79,12 +99,22 @@ export default {
       },
       onChange(index) {
           var that=this;
-          this.$router.push({
-              path:'/'+index,
-              query:{
-                  ID:that.ID,
-              }
-          });
+          if(that.zsbd=="1"){
+              that.active=that.active1;
+              that.$dialog.alert({
+                    message: '当前评价表未完成',
+              });
+              localStorage.setItem('zsbd',"");
+          }
+          else{
+              that.active1=that.active;
+              this.$router.push({
+                  path:'/'+index,
+                  query:{
+                      ID:that.ID,
+                  }
+              });  
+          }
       },
       onClickRight() {
           this.node=0;this.N1=1;

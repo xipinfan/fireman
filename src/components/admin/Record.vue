@@ -26,9 +26,6 @@ export default {
            this.$emit('onClick1');
       }
   },
-  computed:{
-        
-  },
 }
 </script>
 
