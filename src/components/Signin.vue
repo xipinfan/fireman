@@ -1,7 +1,9 @@
 <template>
     <div>
         <Register v-if="register==true" @change="change"></Register>
+        <Forget v-if="forget==true" @change="change"></Forget>
         <div id="sign1" v-if="register==false"> 
+        <div v-if="forget==false">
             <van-row type="flex" justify="center">
               <img :src="logo" style="margin-right: 0.3rem;margin-top: 0.6rem;width: 1.5rem;height: 1.5rem;">
               <h2 align="center">评分系统</h2>
@@ -33,9 +35,7 @@
                 </van-row>
                 <div class="frame2"></div>
                 <van-row type="flex" justify="end">
-                  <!-- <van-checkbox icon-size="15\px" class="big1" v-model="checked">记住密码</van-checkbox> -->
                   <div class="frame2"></div>
-                  <!-- <van-checkbox icon-size="15\px" class="big1" @click="holdon" v-model="hold">自动登录</van-checkbox> -->
                 </van-row>
                 <div class="frame1"></div>
                 <div style="margin: 0.01rem;">
@@ -45,12 +45,13 @@
                 </div>
                 <div style="margin-top: 70%;">
                     <van-row type="flex" justify="center">  
-                      <a href="#" @click="forget1" style="color: #20A0FF;font-size: 0.4rem;margin-top: 0.1rem;">忘记密码</a>
+                      <a href="#" @click="forget=true" style="color: #20A0FF;font-size: 0.4rem;margin-top: 0.1rem;">忘记密码</a>
                       <div class="divder1"></div>
                       <a href="#" @click="register=true" style="color: #20A0FF;font-size: 0.4rem;margin-top: 0.1rem;">注册账号</a>
                     </van-row>
                 </div>
             </van-form>
+        </div>
         </div>
     </div>
 </template>
@@ -58,13 +59,14 @@
 <script>
     
 import Register from './admin/Register.vue'
+import Forget from './admin/Forget.vue'
 import logo from '../assets/logo.png'
-
     
 export default {
   name: 'Sign',
   components: {
       Register,
+      Forget,
   },
   data(){
       return{
