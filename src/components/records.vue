@@ -45,7 +45,7 @@
                                  button-size="0.7rem"
                                  min="0"
                                  max="10"
-                                 @drag-start="start(jb*10+man1)"
+                                 @change="start(jb*10+man1)"
                                />
                            </van-col>
                        </van-row>  
@@ -212,7 +212,7 @@ export default {
   },
   methods:{
       start(val){
-          this.$set(this.slider1,val,0);
+          this.$set(this.slider1,val,1);
       },
       onSearch(val) {
         console.log(val);
@@ -256,7 +256,6 @@ export default {
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>  
     .proger{
         width: 3.5rem;

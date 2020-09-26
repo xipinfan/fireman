@@ -1,7 +1,7 @@
 <template>
-  <div class="modify frame">
+  <div class="modify">
       <van-nav-bar
-        class="frame"
+        style="background-color: #fcfcfc;"
         title="修改密码"
         left-text="返回"
         left-arrow
@@ -9,15 +9,16 @@
       />
       <div class="menss">
           <van-row type="flex" justify="center">
-            <van-field class="menss1 Whole"  v-model="value" label="旧密码" placeholder="若包含字母,请注意大小写" />
+            <van-field class="menss1 Whole frame"  v-model="value" label="旧密码" placeholder="若包含字母,请注意大小写" />
           </van-row>
           <van-row type="flex" justify="center">
-            <van-field class="menss1 Whole" v-model="value1" label="新密码" placeholder="6-16位新密码" />
+            <van-field class="menss1 Whole frame" v-model="value1" label="新密码" placeholder="6-16位新密码" />
           </van-row>
-          <p id="tip">{{ str }}</p>
+          <div v-if="ok2==true" style="height: 0.76rem;width: 10rem;"></div>
+          <div id="tip" style="text-align: center;">{{ str }}</div>
       </div>
       <van-row class="menss1" type="flex" justify="end">
-        <van-button @click="out" id="Bt" round type="primary" size="large">确认修改</van-button>
+        <van-button style="background-color: #1989fa;border-color: #1989fa;" @click="out" id="Bt" round type="primary" size="large">确认修改</van-button>
       </van-row>
       <div id="ide"></div>
   </div>
@@ -34,7 +35,8 @@ export default {
           value: '',
           value1: '',
           ok1:false,
-          str:'',
+          ok2:true,
+          str:' ',
       }
   },
   methods:{
@@ -42,6 +44,7 @@ export default {
            this.$emit('onClick1');
       },
       out(){
+          console.log(this.ID);
           if(this.ID.password!=this.value){
               this.str="原密码错误";
           }
@@ -59,6 +62,8 @@ export default {
                   this.value1='';
               }
           }
+          if(this.str!='')this.ok2=false;
+          else this.ok2=true;
       }
   },
 }
@@ -79,9 +84,9 @@ export default {
         margin-top: 0.8rem;
     }
     #tip{
-        color: red;
-        font-size: small;
-        margin-left: 0.5rem;
+        color: red; 
+        margin-top: 0.3rem;
+        font-size: 0.36rem;
     }
     #Bt{
         margin: 0.8rem;

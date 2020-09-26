@@ -78,9 +78,11 @@ export default {
   },
   methods:{
       begin(user){
+          console.log("?");
           if(this.N1==0){
+              console.log(user);
               this.active="contact";
-              this.ID=user.data.extend;
+              //this.ID=user.data.extend;
               this.N1=1;
               this.node=1;
               this.$router.push('/contact');

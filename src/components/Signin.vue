@@ -1,9 +1,9 @@
 <template>
     <div>
-        <Register v-if="register==true"></Register>
-        <div id="sign1" v-if="register==false">
+        <Register v-if="register==true" @change="change"></Register>
+        <div id="sign1" v-if="register==false"> 
             <van-row type="flex" justify="center">
-              <img src="../assets/logo.png" style="margin-right: 0.3rem;margin-top: 0.6rem;width: 1.5rem;height: 1.5rem;">
+              <img :src="logo" style="margin-right: 0.3rem;margin-top: 0.6rem;width: 1.5rem;height: 1.5rem;">
               <h2 align="center">评分系统</h2>
             </van-row>  
             <div class="frame1"></div><div class="frame1"></div>
@@ -43,9 +43,9 @@
                     登录
                   </van-button>
                 </div>
-                <div style="margin-top: 60%;">
+                <div style="margin-top: 70%;">
                     <van-row type="flex" justify="center">  
-                      <a href="#" style="color: #20A0FF;font-size: 0.4rem;margin-top: 0.1rem;">忘记密码</a>
+                      <a href="#" @click="forget1" style="color: #20A0FF;font-size: 0.4rem;margin-top: 0.1rem;">忘记密码</a>
                       <div class="divder1"></div>
                       <a href="#" @click="register=true" style="color: #20A0FF;font-size: 0.4rem;margin-top: 0.1rem;">注册账号</a>
                     </van-row>
@@ -58,28 +58,36 @@
 <script>
     
 import Register from './admin/Register.vue'
+import logo from '../assets/logo.png'
+
     
 export default {
   name: 'Sign',
   components: {
-      Register
+      Register,
   },
   data(){
       return{
           on:'',
           checked: true,
           register:false,
+          forget:false,
           hold:true,
           bin: false,
           fuckyou:{},
           username: '',
           password: '',
           wow:{},
+          logo,
       }
   },
   methods:{
+      forget1(){
+          this.$toast('请询问您的上级');
+      },
       onSubmit(values) {
             var that1=this;
+            //that1.$emit('again');that1.$emit('begin',"");
             var params = new URLSearchParams();
             params.append('username', values.username);
             params.append('password', values.password);
@@ -99,11 +107,17 @@ export default {
                 else{
                     that1.bin=true;
                 }
-            });
+            }).catch(err => {
+                this.$toast('账号或密码错误');
+                console.log(err.message);
+           });
       },
       holdon(){
           if(this.hold==true)localStorage.setItem("hold","open");
           else localStorage.setItem("hold","");
+      },
+      change(){
+          this.register=false;this.forget=false;
       }
   },
   created:function (){
@@ -137,6 +151,7 @@ export default {
 
 <style>
     .divder1{
+        
         height: 0.25rem;
         width: 0.01rem;
         background-color: #969799;

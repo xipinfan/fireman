@@ -104,6 +104,8 @@ export default {
         margin-bottom: 0.2rem;
     }
     .Whole{ 
+        border:0.01rem solid;
+        border-color: #E6E6E6;
         border-radius:26.64rem;
         margin-left: 0.7rem;
         margin-right: 0.7rem;
