@@ -9,7 +9,7 @@
         />
         <div style="margin-left: 0.5rem;margin-right: 0.5rem;margin-top: 0.4rem;">
             <div style="border-bottom: 0.001rem solid #dddddd;margin-bottom: 0.8rem;">
-                <div style="font-size: 0.6rem;margin-bottom: 0.5rem;">请输入手机号：</div>
+                <div style="font-size: 0.8rem;margin-bottom: 0.5rem;">请输入手机号：</div>
                 <van-field center style="font-size: 0.45rem;" label-width="1.5rem" v-model="value">
                   <template #label>
                       <div style="color: #000000;font-size: 0.45rem;margin-right: 0rem;">
@@ -71,6 +71,7 @@ export default {
   name: 'Forget',
   data(){
       return{
+          value:'',
           node:0,
           problem:"你爸爸！",
           password:"",

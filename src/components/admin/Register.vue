@@ -9,7 +9,7 @@
           />
           <div style="margin-left: 0.5rem;margin-right: 0.5rem;margin-top: 0.4rem;">
               <div style="border-bottom: 0.001rem solid #dddddd;margin-bottom: 0.8rem;">
-                  <div style="font-size: 0.8rem;margin-bottom: 0.5rem;">请输入手机号</div>
+                  <div style="font-size: 0.8rem;margin-bottom: 0.5rem;">输入手机号码</div>
                   <van-field center style="font-size: 0.45rem;" label-width="1.5rem" v-model="value">
                     <template #label>
                         <div style="color: #000000;font-size: 0.45rem;margin-right: 0rem;">
@@ -17,9 +17,25 @@
                             <van-icon style="margin-top: 0.15rem;" name="arrow-down" />
                         </div>
                     </template>
+                    <template #button>
+                        <van-button style="margin-right: -0.5rem;" v-if="fuck==0" size="small" @click="click2" type="primary">发送验证码</van-button>
+                        <van-button style="margin-right: -0.5rem;" disabled v-else size="small" type="primary">
+                            <template #default>
+                                请{{ node }}秒后重试
+                            </template>
+                        </van-button>
+                    </template>
                   </van-field>
               </div>
-              <div style="margin-top: 2rem;"></div>
+              <div style="border-bottom: 0.001rem solid #dddddd;margin-bottom: 1.5rem;">
+                  <van-field center style="font-size: 0.45rem;" label-width="1.5rem" v-model="value2">
+                    <template #label>
+                        <div style="color: #000000;font-size: 0.45rem;margin-right: 0rem;">
+                            验证码
+                        </div>
+                    </template>
+                  </van-field>
+              </div>
               <van-button @click="click1" type="info" size="large" color="#20A0FF" round style="font-size: 0.4rem;">下一步</van-button>
           </div>
       </div>
@@ -83,15 +99,15 @@
             <van-field
               center
               readonly 
-              name="职位"
+              name="职务"
               v-model="career"
-              placeholder="请选择职位"
+              placeholder="请选择职务"
               @click="showPicker1 = true"
               label-width="2rem"
             >
                 <template #label>
                     <div style="color: #000000;font-size: 0.45rem;margin-right: 0rem;">
-                        职位
+                        职务
                     </div>
                 </template>
             </van-field>
@@ -151,7 +167,7 @@
               center 
               label-width="2rem" 
             >
-            
+
                 <template #label>
                     <div style="color: #000000;font-size: 0.45rem;margin-right: 0rem;">
                         密码
@@ -168,7 +184,7 @@
       </div>
       <div v-else>
           <van-nav-bar
-            title="设置密保"
+            title="注册账号"
             left-text="返回"
             left-arrow
             @click-left="reg=1"
@@ -189,6 +205,7 @@
           <div style="margin-left: 0.5rem;margin-right: 0.5rem;">
               <van-button @click="onClickLeft" type="info" size="large" color="#20A0FF" round style="font-size: 0.4rem;">确认提交</van-button>
           </div>
+
       </div>
   </div>
 </template>
@@ -197,14 +214,14 @@
   
 import { Toast } from 'vant';
 import { Dialog } from 'vant';
-
 export default {
   name: 'Register',
   data(){
       return{
-          message:'',
+          
           problem:'',
           fuck:0,
+          node:60,
           reg:0,
           value: '',
           value1: 0,
@@ -278,16 +295,17 @@ export default {
       }
   },
   methods:{
+      
       onClickLeft(){
-          if(this.reg==2){
-              Dialog({ message: '账号注册成功' }).then(() => {
-                  this.$emit('change');
-              });
-          }
-          else this.$emit('change');
+          Dialog({ message: '账号注册成功' }).then(() => {
+              this.$emit('change');
+          });
       },
       click1(){
           this.reg=1;
+      },
+      click2(){
+          this.fuck=1;
       },
       click3(){
           this.reg=0;
@@ -336,11 +354,15 @@ export default {
       }
   },
   mounted: function () {
-    
+    window.setInterval(() => {
+        if(this.fuck==1){
+            this.node--;
+        }
+        if(this.node==0){
+            this.fuck=0;
+            this.node=60;
+        }
+    }, 1000)
   },
 }
 </script>
-
-<style scoped>
-    
-</style>

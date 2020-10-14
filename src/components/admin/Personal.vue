@@ -10,7 +10,7 @@
       <div>
           <div class="fra frame"> </div><div style="margin-top: 0.5rem;"> </div>
           <van-row class='kk' type="flex" justify="center">
-            <van-field class="Whole" v-model="ID.id" label="账号" readonly />
+            <van-field class="Whole" v-model="ID.uid" label="账号" readonly />
           </van-row>
           <div class="fra frame"> </div>
           <van-row class='kk' type="flex" justify="center">
@@ -29,11 +29,11 @@
           <div class="fra frame"></div><div class="fra frame"></div><div class="fra frame"></div>
           <div class="frame">
             <van-row type="flex" justify="end">
-            <van-radio-group v-if="online == true" disabled v-model="radio"  direction="horizontal">
+            <van-radio-group v-if="online == true" disabled v-model="ID.sex"  direction="horizontal">
               <van-radio class="big1" name="男">男</van-radio>
               <van-radio class="big1" name="女">女</van-radio>
             </van-radio-group>
-            <van-radio-group v-if="online == false" direction="horizontal" v-model="radio">
+            <van-radio-group v-if="online == false" direction="horizontal" v-model="ID.sex">
               <van-radio class="big1" name="男">男</van-radio>
               <van-radio class="big1" name="女">女</van-radio>
             </van-radio-group>
@@ -57,7 +57,6 @@ export default {
   ],
   data(){
       return{
-          radio:'男',
           on:'修改信息',
           online:true,
           value: '',
@@ -72,9 +71,28 @@ export default {
           if(this.online==true){
               this.on='确认修改';
               this.online=false;
-              this.$emit('Change',this.ID);
           }
           else{
+               console.log(document.cookie);
+              //this.setCookie(this.username,this.password,"1");
+              var that1 = this;
+              var params = new FormData();
+              params.append('uid', this.uid);
+              params.append('uname', this.username);
+              params.append('age', this.age);
+              params.append('sex', this.sex);
+              params.append('password', this.password);
+              this.$axios.post('http://81.68.199.173:8058/user/modify',params) 
+              .then((response) => {
+                    console.log(response);
+                    if(response.data.code==100){
+                        that1.$emit('begin',response);
+                    }
+                    else{
+                        that1.bin=true;
+                    }
+                });
+              this.$emit('Change',this.ID);
               this.online=true;
               this.on='修改信息';
           }

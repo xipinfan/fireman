@@ -5,18 +5,18 @@
         <div id="sign1" v-if="register==false"> 
         <div v-if="forget==false">
             <van-row type="flex" justify="center">
-              <img :src="logo" style="margin-right: 0.3rem;margin-top: 0.6rem;width: 1.5rem;height: 1.5rem;">
+              <img :src="logo" style="margin-right: 0.3rem;margin-top: 1.1rem;width: 1.5rem;height: 1.5rem;">
               <h2 align="center">评分系统</h2>
             </van-row>  
-            <div class="frame1"></div><div class="frame1"></div>
+            <div class="frame1"></div>
             <van-form show-error-message  @submit="onSubmit" error-message-align="center" validate-trigger="onChange">
                 <van-row>
                 <van-field
                   class="frame gold"
                   v-model="username"
                   name="username"
-                  label="用户名"
-                  placeholder="请填写用户名"
+                  label="手机号"
+                  placeholder="请填写用手机号"
                   :rules="[{ required: false }]"
                 />
                 <div class="frame1"></div><div class="frame1"></div>
@@ -43,7 +43,7 @@
                     登录
                   </van-button>
                 </div>
-                <div style="margin-top: 70%;">
+                <div style="margin-top: 75%;">
                     <van-row type="flex" justify="center">  
                       <a href="#" @click="forget=true" style="color: #20A0FF;font-size: 0.4rem;margin-top: 0.1rem;">忘记密码</a>
                       <div class="divder1"></div>
@@ -87,26 +87,30 @@ export default {
       forget1(){
           this.$toast('请询问您的上级');
       },
+      setCookie(cname,cvalue,exdays)
+      {
+        var d = new Date();
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));
+        var expires = "expires="+d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+      },
       onSubmit(values) {
             var that1=this;
             //that1.$emit('again');that1.$emit('begin',"");
-            var params = new URLSearchParams();
-            params.append('username', values.username);
+            this.setCookie(this.username,this.password,"1");
+            var params = new FormData();
+            params.append('tel', values.username);
             params.append('password', values.password);
-            this.$axios.post('http://101.133.170.148:8058/user/login',params) 
+            this.$axios.post('http://81.68.199.173:8058/user/login',params) 
             .then((response) => { 
+                console.log(response);
                 if(response.data.code==100){
-                    if(that1.checked==true){
-                        localStorage.setItem("username",that1.username);
-                        localStorage.setItem("password",that1.password);
-                    }
-                    else{
-                        localStorage.setItem("username","");
-                        localStorage.setItem("password","");
-                    }
+                    localStorage.setItem("tel",that1.username);
+                    localStorage.setItem("password",that1.password);
                     that1.$emit('again');that1.$emit('begin',response);
                 }
-                else{
+                else{   
+                    this.$toast('请求失败请向管理员');
                     that1.bin=true;
                 }
             }).catch(err => {
@@ -123,29 +127,25 @@ export default {
       }
   },
   created:function (){
-       this.username=localStorage.getItem('username');  
+       this.username=localStorage.getItem('tel');  
        this.password=localStorage.getItem('password');
    },
    mounted:function(){
       var that1=this;
-      this.on=localStorage.getItem('hold');
-      if(this.on=="open"){
-         var params = new URLSearchParams();
-         params.append('username', this.username);
-         params.append('password', this.password);
-         this.$axios.post('http://101.133.170.148:8058/user/login',params) 
-         .then((response) => {
-               if(response.data.code==100){
-                   that1.$emit('begin',response);
-               }
-               else{
-                   that1.bin=true;
-               }
-           });
-      }
-      else{
-          this.hold=false;
-      }
+      this.setCookie(this.username,this.password,"1");
+      var params = new FormData();
+      params.append('tel', this.username);
+      params.append('password', this.password);
+      this.$axios.post('http://81.68.199.173:8058/user/login',params) 
+      .then((response) => {
+            if(response.data.code==100){
+                console.log(document.cookie);
+                that1.$emit('begin',response);
+            }
+            else{
+                that1.bin=true;
+            }
+        });
    }
 }
 

@@ -78,11 +78,9 @@ export default {
   },
   methods:{
       begin(user){
-          console.log("?");
           if(this.N1==0){
-              console.log(user);
               this.active="contact";
-              //this.ID=user.data.extend;
+              this.ID=user.data.extend;
               this.N1=1;
               this.node=1;
               this.$router.push('/contact');
@@ -90,8 +88,6 @@ export default {
       },
       Change(ID){
           this.ID=ID;
-          var IDEA=this.ID;
-          localStorage.setItem('IDEA',JSON.stringify(IDEA));
       },
       onClick1() {
            this.node=1;
