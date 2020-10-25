@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="personal frame">
       <van-nav-bar
         style="background-color: #fcfcfc;"
@@ -14,8 +14,8 @@
           </van-row>
           <div class="fra frame"> </div>
           <van-row class='kk' type="flex" justify="center">
-            <van-field class="Whole" v-if="online == true" v-model="ID.username" label="姓名" readonly />
-            <van-field class="Whole" v-if="online == false" v-model="ID.username" label="姓名" />
+            <van-field class="Whole" v-if="online == true" v-model="ID.uname" label="姓名" readonly />
+            <van-field class="Whole" v-if="online == false" v-model="ID.uname" label="姓名" />
           </van-row>
           <div class="fra frame"> </div>
           <van-row class='kk' type="flex" justify="center">
@@ -59,6 +59,7 @@ export default {
       return{
           on:'修改信息',
           online:true,
+          sex:0,
           value: '',
           showPicker: false,
       }
@@ -73,18 +74,15 @@ export default {
               this.online=false;
           }
           else{
-               console.log(document.cookie);
-              //this.setCookie(this.username,this.password,"1");
               var that1 = this;
               var params = new FormData();
-              params.append('uid', this.uid);
-              params.append('uname', this.username);
-              params.append('age', this.age);
-              params.append('sex', this.sex);
-              params.append('password', this.password);
-              this.$axios.post('http://81.68.199.173:8058/user/modify',params) 
+              params.append('uid', this.ID.uid);
+              params.append('uname', this.ID.username);
+              params.append('age', this.ID.age);
+              params.append('sex', this.ID.sex);
+              params.append('password', this.ID.password);
+              this.$axios.post('/api/user/modify',params) 
               .then((response) => {
-                    console.log(response);
                     if(response.data.code==100){
                         that1.$emit('begin',response);
                     }
@@ -108,6 +106,7 @@ export default {
   },
   mounted:function(){
       this.value=this.ID.career;
+      console.log(this.ID);
   }
 }
 </script>

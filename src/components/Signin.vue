@@ -15,8 +15,8 @@
                   class="frame gold"
                   v-model="username"
                   name="username"
-                  label="手机号"
-                  placeholder="请填写用手机号"
+                  label="用户"
+                  placeholder="请填写手机号或账号"
                   :rules="[{ required: false }]"
                 />
                 <div class="frame1"></div><div class="frame1"></div>
@@ -43,7 +43,7 @@
                     登录
                   </van-button>
                 </div>
-                <div style="margin-top: 75%;">
+                <div style="margin-top: 60%;">
                     <van-row type="flex" justify="center">  
                       <a href="#" @click="forget=true" style="color: #20A0FF;font-size: 0.4rem;margin-top: 0.1rem;">忘记密码</a>
                       <div class="divder1"></div>
@@ -99,22 +99,22 @@ export default {
             //that1.$emit('again');that1.$emit('begin',"");
             this.setCookie(this.username,this.password,"1");
             var params = new FormData();
-            params.append('tel', values.username);
+            params.append('username', values.username);
             params.append('password', values.password);
-            this.$axios.post('http://81.68.199.173:8058/user/login',params) 
+            this.$axios.post('/api/user/login',params) 
             .then((response) => { 
-                console.log(response);
-                if(response.data.code==100){
-                    localStorage.setItem("tel",that1.username);
+                if(response.data.msg=="登录成功"){
+                    localStorage.setItem("username",that1.username);
                     localStorage.setItem("password",that1.password);
                     that1.$emit('again');that1.$emit('begin',response);
                 }
                 else{   
-                    this.$toast('请求失败请向管理员');
+                    this.$toast('账号或密码错误');
                     that1.bin=true;
                 }
             }).catch(err => {
-                this.$toast('账号或密码错误');
+                this.$toast('请求失败请向管理员');
+                alert("cnm");
                 console.log(err.message);
            });
       },
@@ -132,20 +132,23 @@ export default {
    },
    mounted:function(){
       var that1=this;
-      this.setCookie(this.username,this.password,"1");
       var params = new FormData();
-      params.append('tel', this.username);
+      params.append('username', this.username);
       params.append('password', this.password);
-      this.$axios.post('http://81.68.199.173:8058/user/login',params) 
-      .then((response) => {
-            if(response.data.code==100){
-                console.log(document.cookie);
+      this.$axios.post('/api/user/login',params)
+       .then((response) => { 
+           if(response.data.msg=="登录成功"){
                 that1.$emit('begin',response);
-            }
-            else{
-                that1.bin=true;
-            }
-        });
+           }
+           else{   
+               this.$toast('账号或密码错误');
+               that1.bin=true;
+           }
+        }).catch(err => {
+           this.$toast('请求失败请向管理员');
+           alert("cnm");
+           console.log(err.message);
+       });
    }
 }
 
@@ -153,7 +156,6 @@ export default {
 
 <style>
     .divder1{
-        
         height: 0.25rem;
         width: 0.01rem;
         background-color: #969799;

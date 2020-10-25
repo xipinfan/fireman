@@ -44,16 +44,31 @@ export default {
            this.$emit('onClick1');
       },
       out(){
-          console.log(this.ID);
           if(this.ID.password!=this.value){
               this.str="原密码错误";
           }
           else{
-              if(this.value1.length<6||this.value1.length>16){
+              if(this.value1.length<3||this.value1.length>16){
                   this.str="新密码长度不符合规范"
               }
               else{
                   this.ID.password=this.value1;
+                  var that1 = this;
+                  var params = new FormData();
+                  params.append('uid', this.ID.uid);
+                  params.append('uname', this.ID.username);
+                  params.append('age', this.ID.age);
+                  params.append('sex', this.ID.sex);
+                  params.append('password', this.ID.password);
+                  this.$axios.post('/api/user/modify',params) 
+                  .then((response) => {
+                        if(response.data.code==100){
+                            that1.$emit('begin',response);
+                        }
+                        else{
+                            that1.bin=true;
+                        }
+                  });
                   this.$emit('Change',this.ID);
                   this.$dialog.alert({
                         message: '密码修改成功',

@@ -47,7 +47,7 @@
             @click-left="click3"
             :border="false"
           />
-          <van-form @submit="onSubmit" submit-on-enter>
+          <van-form @submit="onClickLeft" submit-on-enter>
             <div style="margin-top: 0.3rem;"></div>
             <van-field
               v-model="username"
@@ -177,35 +177,10 @@
             <div style="margin-top: 0.8rem;"></div>
             <div style="margin: 0.5rem;">
               <van-button round block type="info" native-type="submit">
-                提交
+                确认注册
               </van-button>
             </div>
           </van-form>
-      </div>
-      <div v-else>
-          <van-nav-bar
-            title="注册账号"
-            left-text="返回"
-            left-arrow
-            @click-left="reg=1"
-            :border="false"
-          />
-          <div style="margin-top: 0.5rem;"></div>
-          <van-field v-model="problem" label="问题" placeholder="请输入密保问题" />
-          <div style="margin-top: 0.4rem;"></div>
-          <van-field
-            v-model="message"
-            rows="1"
-            autosize
-            label="答案"
-            type="textarea"
-            placeholder="请输入密保答案"
-          />
-          <div style="margin-top: 1rem;"></div>
-          <div style="margin-left: 0.5rem;margin-right: 0.5rem;">
-              <van-button @click="onClickLeft" type="info" size="large" color="#20A0FF" round style="font-size: 0.4rem;">确认提交</van-button>
-          </div>
-
       </div>
   </div>
 </template>
@@ -218,7 +193,6 @@ export default {
   name: 'Register',
   data(){
       return{
-          
           problem:'',
           fuck:0,
           node:60,
@@ -295,7 +269,6 @@ export default {
       }
   },
   methods:{
-      
       onClickLeft(){
           Dialog({ message: '账号注册成功' }).then(() => {
               this.$emit('change');

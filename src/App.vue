@@ -15,8 +15,8 @@
             :ID="ID"
             v-if="active=='contact'"></Contact>
         <van-tabbar v-model="active" @change="onChange">
-          <van-tabbar-item v-if="ID.is_admin==1" name="medal" icon="medal-o">排名</van-tabbar-item>
-          <van-tabbar-item v-if="ID.is_admin==1" name="chart" icon="chart-trending-o">图表</van-tabbar-item>
+          <van-tabbar-item v-if='ID.isAdmin=="1"' name="medal" icon="medal-o">排名</van-tabbar-item>
+          <van-tabbar-item v-if='ID.isAdmin=="1"' name="chart" icon="chart-trending-o">图表</van-tabbar-item>
           <van-tabbar-item name="records" icon="records">评分</van-tabbar-item>
           <van-tabbar-item name="contact" icon="contact">个人中心</van-tabbar-item>
         </van-tabbar>
@@ -24,7 +24,7 @@
     <div v-else>
         <Person v-if="node == 2" :ID="ID" @Change="Change" @onClick1="onClick1"></Person>
         <Modify v-if="node == 3" :ID="ID" @Change="Change" @onClick1="onClick1"></Modify>
-        <Record v-if="node == 4" @onClick1="onClick1"></Record>
+        <Record v-if="node == 4" :ID="ID" @onClick1="onClick1"></Record>
         <router-view></router-view>
     </div>
   </div>
@@ -80,7 +80,7 @@ export default {
       begin(user){
           if(this.N1==0){
               this.active="contact";
-              this.ID=user.data.extend;
+              this.ID=user.data.extend.userData;
               this.N1=1;
               this.node=1;
               this.$router.push('/contact');

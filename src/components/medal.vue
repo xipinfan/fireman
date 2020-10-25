@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div style="margin-left: 0.1rem;margin-right: 0.1rem;">
       <van-dropdown-menu>
         <van-dropdown-item v-model="value1" :options="option1" />
         <van-dropdown-item v-model="value2" :options="option2" />

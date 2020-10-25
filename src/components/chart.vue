@@ -13,7 +13,8 @@
       </van-cell>
       <van-action-sheet v-model="show1" cancel-text="确认" close-on-click-action @cancel="onCancel1" title="选择日期">
           <van-datetime-picker
-            show-toolbar
+            show-toolbar 
+            style="margin-bottom: -1rem;" 
             confirm-button-text=" "
             cancel-button-text=" "
             @change="chang2"
@@ -119,15 +120,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    .hello{
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
+    }
     .custom-title{
-        margin-left: 37%;
+        margin-left: 35%;
         font-size: 0.5rem;
     }
-    .el-header{
-        background-color: #1F5DEA;
-        color: white;
-        text-align: center;
-        line-height: 1.5rem;
-        font-size: 0.8rem;
-      }
 </style>
